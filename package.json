@@ -1,0 +1,10 @@
+{
+    "name": "burger-queen-api-client",
+    "version": "0.1.0",
+    "engines": {
+        "node": ">=16.x"
+    },
+    "devDependencies": {
+        "jest": "^29.5.0"
+    }
+}
