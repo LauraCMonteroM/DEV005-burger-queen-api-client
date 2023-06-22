@@ -1,22 +1,27 @@
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
-const Home = () => {
-          return (
-                    <div>
-                               <h1>Burger Queen</h1>
-                              <ul>
-                                        <li>
-                                                  <Link to= "/admin">Admin</Link>
-                                        </li>
-                                        <li>
-                                                  <Link to= "/waiter">Waiter</Link>
-                                        </li>
-                                        <li>
-                                                  <Link to= "/cheff">Cheff</Link>
-                                        </li>          
-                              </ul>
-                                                           
-                    </div>  )
+function HomeButton() {
+    const navigate = useNavigate();
+
+    function GoToLogin() {
+        navigate("/Login");
+    }
+
+
+    return (
+        <div>
+            <h1>Burger Queen</h1>
+            <button type="button" onClick={GoToLogin}>
+                Administrador
+            </button>
+            <button type="button" onClick={GoToLogin}>
+                Mesero
+            </button>
+            <button type="button" onClick={GoToLogin}>
+                Cheff
+            </button>
+        </div>
+
+    );
 }
-
-export default Home
+export default HomeButton
