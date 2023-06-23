@@ -10,7 +10,7 @@ function HomeButton() {
 
     return (
         <div>
-            <h1>Burger Quuueen</h1>
+            <h1>Burger Queen</h1>
             <button type="button" onClick={GoToLogin}>
                 Administrador
             </button>
