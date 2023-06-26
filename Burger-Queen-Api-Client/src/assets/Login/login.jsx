@@ -14,7 +14,7 @@ const Login = () => {
                     <label> Correo Electronico
                         <input type="text" />
                     </label>
-                    <label> Contraseña
+                    <label> boton contraseña
                         <input type="text" />
                     </label>
                     <button type='submit'>Iniciar Sesión</button>
