@@ -18,7 +18,7 @@ function HomeButton() {
                 Mesero
             </button>
             <button type="button" onClick={GoToLogin}>
-                Cheff
+                Cheffcito
             </button>
         </div>
 
