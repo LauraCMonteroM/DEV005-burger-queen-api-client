@@ -4,6 +4,7 @@ import  Home  from './assets/homeView/home';
 import Login from './assets/Login/login';
 import Vista1Cheff from './assets/chef/vista1chef';
 import VistaMenu from './assets/waiter/vistamenu';
+import Vista1Admin from './assets/admin/vista1';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <Route path= '/login' element={<Login />}></Route>
           <Route path= '/cheff' element={<Vista1Cheff />}></Route>
           <Route path= '/menu' element={<VistaMenu />}></Route>
+          <Route path= '/admin' element={<Vista1Admin />}></Route>
         </Routes>
       </div>
   )

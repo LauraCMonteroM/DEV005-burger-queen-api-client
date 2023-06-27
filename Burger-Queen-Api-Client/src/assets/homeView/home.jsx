@@ -12,13 +12,13 @@ function HomeButton() {
         <div>
             <h1>Burger Queen</h1>
             <button type="button" onClick={GoToLogin}>
-                Administradorito
+                Administrador
             </button>
             <button type="button" onClick={GoToLogin}>
-                Meserito
+                Mesero
             </button>
             <button type="button" onClick={GoToLogin}>
-                Cheffcito
+                Cheff
             </button>
         </div>
 
