@@ -65,7 +65,7 @@ function Auth() {
                             <label>Email</label>
                             <input type="text" {...register('email', {
                                 required: true,
-                                pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                                pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
                             })}/>
                         </div>
                         <div>

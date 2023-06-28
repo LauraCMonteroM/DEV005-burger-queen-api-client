@@ -7,7 +7,6 @@ function HomeButton() {
         navigate("/Login");
     }
 
-
     return (
         <div>
             <h1>Burger Queen</h1>
@@ -20,6 +19,7 @@ function HomeButton() {
             <button type="button" onClick={GoToLogin}>
                 Cheff
             </button>
+            
         </div>
 
     );
