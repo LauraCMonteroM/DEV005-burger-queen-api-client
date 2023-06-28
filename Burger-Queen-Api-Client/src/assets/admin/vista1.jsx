@@ -1,20 +1,21 @@
 import { useNavigate } from "react-router-dom";
+
 const Vista1Admin = () => {
-    const cloused = useNavigate()
-
-    function GotoHome(){
-        cloused("/")
-    }
-    return (
-
-        <div>
-            <h1>Página en contrucción</h1>
-            <button id="signOff" type="button" onClick={GotoHome}>Cerrar sesión</button>
-        </div>
-
-
-    )
-
-}
+          const closed = useNavigate()
+      
+          function GotoHome(){
+              closed("/")
+          }
+          return (
+      
+              <div>
+                  <h1>Página en construcción</h1>
+                  <i className="bi bi-box-arrow-right" onClick={GotoHome}></i>
+              </div>
+      
+      
+          )
+      
+      }
 
 export default Vista1Admin
