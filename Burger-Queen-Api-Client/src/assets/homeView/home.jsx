@@ -1,4 +1,6 @@
+import image from '../../imgs/LogoBQ.png'
 import { useNavigate } from "react-router-dom";
+import './home.css'
 
 function HomeButton() {
     const navigate = useNavigate();
@@ -9,19 +11,22 @@ function HomeButton() {
 
 
     return (
-        <div>
-            <h1>Burger Queen</h1>
-            <button type="button" onClick={GoToLogin}>
-                Administrador
-            </button>
-            <button type="button" onClick={GoToLogin}>
-                Mesero
-            </button>
-            <button type="button" onClick={GoToLogin}>
-                Cheff
-            </button>
-        </div>
-
+        <section id='container'>            
+            <section id='logo'>
+                <img src={image} className='login-logo' alt='Burger Queen Logo'/>
+            </section>
+            <section id='buttonsContainer'> 
+                <button type="button" onClick={GoToLogin}>
+                    Administrador
+                </button>
+                <button type="button" onClick={GoToLogin}>
+                    Mesero
+                </button>
+                <button type="button" onClick={GoToLogin}>
+                    Cheff
+                </button>
+            </section>           
+        </section>
     );
 }
 export default HomeButton
