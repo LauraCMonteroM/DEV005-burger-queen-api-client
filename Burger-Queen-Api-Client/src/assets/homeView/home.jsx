@@ -9,7 +9,6 @@ function HomeButton() {
         navigate("/Login");
     }
 
-
     return (
         <section id='container'>            
             <section id='logo'>
