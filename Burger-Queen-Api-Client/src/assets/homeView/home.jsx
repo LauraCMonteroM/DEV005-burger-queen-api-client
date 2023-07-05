@@ -15,13 +15,13 @@ function HomeButton() {
                 <img src={image} className='login-logo' alt='Burger Queen Logo'/>
             </section>
             <section id='buttonsContainer'> 
-                <button type="button" onClick={GoToLogin}>
+                <button type="button" className='homeButton' onClick={GoToLogin}>
                     Administrador
                 </button>
-                <button type="button" onClick={GoToLogin}>
+                <button type="button" className='homeButton'  onClick={GoToLogin}>
                     Mesero
                 </button>
-                <button type="button" onClick={GoToLogin}>
+                <button type="button" className='homeButton'  onClick={GoToLogin}>
                     Cheff
                 </button>
             </section>           

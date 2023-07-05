@@ -18,7 +18,6 @@ function Auth() {
 
   // Función que interactúa con la API
   const onSubmit = (data) => {
-    console.log(data)
     loginAdmin(data)    
       .then(async (response) => {
         if (response.ok) {
