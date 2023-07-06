@@ -1,15 +1,38 @@
 import { ModalAddUsers } from "./modalAddUsser"
-import { useState } from "react"
-function StatesModal (){
-   const [isModalOpen, setIsModalOpen] = useState(false)
+import  {UseModal}  from "./useModal"
 
-   return(
-    <div>
-   <button onClick={() => isModalOpen(true)}>abrir</button>
-    <ModalAddUsers isOpen = {isModalOpen} closeModal = {() => setIsModalOpen(false)}/>
- </div>
+ function Modals() {
+   const [isOpen1, openModal1, closeModal] = UseModal(false)
+
+   return (
+      <div>
+          <article className="modal isOpen">
+        <div className="modalContainer">
+            <button className="modal-close">X</button>
+          
+        </div>
+
+       </article>
+
+            <button type="submit" onClick={openModal1}>Añadir</button>
+            <ModalAddUsers isOpen1={isOpen1} closeModal={closeModal}>
+               <form>
+
+            <label>Correo</label>
+            <input type="text"></input>
+
+            <label>contraseña</label>
+            <input type="text"></input>
+
+            <label>Rol</label>
+            <input type="text"></input>
+
+
+         </form>
+            </ModalAddUsers>
+         
+
+      </div>
    )
-   
-
 }
-export default StatesModal
+ export default Modals

@@ -3,6 +3,7 @@ import { /*createUser*/ getData } from "../../services/Users.services";
 import { useState, useEffect } from "react"
 import './EmployeesView.css'
 import image from '../../imgs/LogoBQ.png'
+// import Modals from "./modalstate";
 
 const EmployeesView = () => {
   const [users, setUsers] = useState([]);
