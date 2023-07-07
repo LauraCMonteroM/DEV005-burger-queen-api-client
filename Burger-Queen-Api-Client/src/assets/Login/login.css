@@ -37,7 +37,7 @@ html {
   flex: 1;
 }
 
-label {
+.loginLabel {
   display: block;
   color: white;
   font-size: 30px;
@@ -52,6 +52,7 @@ input {
   background-color: white;
   border-radius: 15px;
   margin-bottom: 20px;
+  padding-left: 7px;
 }
 
 .spanError {
