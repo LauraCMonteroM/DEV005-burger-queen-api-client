@@ -7,7 +7,9 @@ import image from '../../imgs/LogoBQ.png';
 const EmployeesView = () => {
   const [users, setUsers] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar la apertura y cierre del modal
-
+  const [getEmail, setEmail] = useState();
+  const  [getPassword, setPassword] = useState();
+  const  [getRol, setRol] = useState();
   useEffect(() => {
     getData(users)
       .then(res => {
@@ -33,6 +35,20 @@ const EmployeesView = () => {
   function handleCreateUser() {
     createUser();
   }
+  const handleImputChangeEmail = ({target}) =>{
+    setEmail(target.value)
+  }
+  const handleImputChangePassword = ({target}) =>{
+    setPassword(target.value)
+  }
+  const handleImputChangeRol = ({target}) =>{
+    setRol(target.value)
+  }
+  const handledSubmit = (e) => {
+    e.preventDefault()
+    console.log(Object)
+  }
+
 
   return (
     <div id='adminEmployeesContainer'>
@@ -69,18 +85,22 @@ const EmployeesView = () => {
         </table>
       </section>
       {isModalOpen && (
+        <form onSubmit={handledSubmit}>
         <div className="modal">
           {/* Contenido del modal */}
           <div className="modal-content">
-            <span className="close" onClick={handleModalClose}>&times;</span>
+           <button type="button" className="btnClose" onClick={handleModalClose}>X</button>
             {/* Aquí puedes agregar los inputs y botones necesarios */}
+            <label value={getEmail} onChange={handleImputChangeEmail}>Correo</label>
             <input type="text" placeholder="Email" />
-            <input type="password" placeholder="Contraseña" />
-            <input type="text" placeholder="Rol" />
-            <button type="button" onClick={handleModalClose}>Cerrar</button>
+            <label>Contraseña</label>
+            <input type="password" placeholder="Contraseña" value={getPassword} onChange={handleImputChangePassword} />
+            <label>Rol</label>
+            <input type="text" placeholder="Rol" value={getRol} onChange={handleImputChangeRol}/>
             <button type="submit"onClick={handleCreateUser}>Guardar cambios</button>
           </div>
         </div>
+        </form>
       )}
     </div>
   );
