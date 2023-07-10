@@ -117,19 +117,30 @@ nav {
 }
 
 .modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 4px;
+  background-color: #ABDCE3;
+  padding: 30px;
+  border-radius: 15px;
   width: 400px;
+  display: flex;
+  flex-direction: column;
 }
 
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
+.closeButton {
+  color: black;
+  margin-left: auto;
 }
 
-.btnClose{
+.modalLabel {
+  color: black;
+}
 
+.modalButton{
+  background-color: #feaf0d;
+  color: black;
+  font-size: 25px;
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.25);
 }

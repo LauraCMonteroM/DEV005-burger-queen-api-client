@@ -66,14 +66,14 @@ function Auth() {
       <section id='loginForm'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='label-input'>
-            <label>Email</label>
+            <label className='loginLabel'>Email</label>
             <input type="text" {...register('email', {
               required: true,
               pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
             })} />
           </div>
           <div className='label-input'>
-            <label>Contraseña</label>
+            <label className='loginLabel'>Contraseña</label>
             <input type="password" {...register('password')} />
           </div>
           <div className='spanError'>
