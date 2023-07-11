@@ -24,20 +24,28 @@ const EmployeesView = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if(editUserId !== null){
+     getData().then((res) => {
+      res.json().then(setUsers);
+    }); 
+    }    
+  }, [editUserId]);
+
   function GotoHome() {
     logOut("/");
   }
 
-  function handleModalOpen(userId) {
+  function handleModalOpen() {
     setIsModalOpen(true);
     setIsEditModalOpen(false)
-    setEditUserId(userId);
+    
   }
 
-  const handleEditModalOpen = () => {
+  const handleEditModalOpen = (userId) => {
     setIsModalOpen(true)
     setIsEditModalOpen(true);
-
+    setEditUserId(userId);
   };
 
   function handleModalClose() {
@@ -55,7 +63,7 @@ const EmployeesView = () => {
     };
     createUser(newUser)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         newUser.id = res.id;
         setUsers([...users, newUser]);
         handleModalClose();
@@ -73,12 +81,13 @@ const EmployeesView = () => {
       password: password,
       role: role,
     };
-    console.log(editedUser)
+    
     editDataUser(editedUser)
       .then((res) => {
         console.log(res);
         const updatedUsers = users.map((user) => {
           if (user.id === editUserId) {
+            console.log(editUserId);
             return editedUser;
           } else {
             return user;
