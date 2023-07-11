@@ -3,6 +3,7 @@ import {
   editDataUser,
   createUser,
   getData,
+  getDataOnlyUser,
 } from "../../services/Users.services";
 import { useState, useEffect } from "react";
 import "./EmployeesView.css";
@@ -15,8 +16,9 @@ const EmployeesView = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
-  const logOut = useNavigate();
   const [editUserId, setEditUserId] = useState(null);
+  const [editUser, setEditUser] = useState(null);
+  const logOut = useNavigate();
 
   useEffect(() => {
     getData().then((res) => {
@@ -25,11 +27,16 @@ const EmployeesView = () => {
   }, []);
 
   useEffect(() => {
-    if(editUserId !== null){
-     getData().then((res) => {
-      res.json().then(setUsers);
-    }); 
-    }    
+    if (editUserId !== null) {
+      getDataOnlyUser(editUserId)
+        .then((res) => res.json())
+        .then((data) => {
+          setEditUser(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   }, [editUserId]);
 
   function GotoHome() {
@@ -38,12 +45,11 @@ const EmployeesView = () => {
 
   function handleModalOpen() {
     setIsModalOpen(true);
-    setIsEditModalOpen(false)
-    
+    setIsEditModalOpen(false);
   }
 
   const handleEditModalOpen = (userId) => {
-    setIsModalOpen(true)
+    setIsModalOpen(true);
     setIsEditModalOpen(true);
     setEditUserId(userId);
   };
@@ -51,6 +57,7 @@ const EmployeesView = () => {
   function handleModalClose() {
     setIsModalOpen(false);
     setIsEditModalOpen(false);
+    setEditUser(null);
   }
 
   const handleCreateUser = (e) => {
@@ -63,7 +70,6 @@ const EmployeesView = () => {
     };
     createUser(newUser)
       .then((res) => {
-        // console.log(res);
         newUser.id = res.id;
         setUsers([...users, newUser]);
         handleModalClose();
@@ -81,18 +87,12 @@ const EmployeesView = () => {
       password: password,
       role: role,
     };
-    
+
     editDataUser(editedUser)
-      .then((res) => {
-        console.log(res);
-        const updatedUsers = users.map((user) => {
-          if (user.id === editUserId) {
-            console.log(editUserId);
-            return editedUser;
-          } else {
-            return user;
-          }
-        });
+      .then(() => {
+        const updatedUsers = users.map((user) =>
+          user.id === editUserId ? editedUser : user
+        );
         setUsers(updatedUsers);
         handleModalClose();
       })
@@ -116,6 +116,13 @@ const EmployeesView = () => {
     setRole(newRole);
   };
 
+  useEffect(() => {
+    if (editUser) {
+      setEmail(editUser.email);
+      setPassword(editUser.password);
+      setRole(editUser.role);
+    }
+  }, [editUser]);
 
   return (
     <div id="adminEmployeesContainer">
@@ -132,7 +139,11 @@ const EmployeesView = () => {
         </button>
       </section>
       <section id="btnAdd">
-        <button type="button" className="addButton" onChange={() => handleModalOpen()}>
+        <button
+          type="button"
+          className="addButton"
+          onClick={() => handleModalOpen()}
+        >
           Añadir Empleado
         </button>
       </section>
@@ -150,7 +161,10 @@ const EmployeesView = () => {
                   <td>{user.email}</td>
                   <td>{user.role}</td>
                   <td>
-                    <i className="bi bi-pencil-fill" onClick={() => handleEditModalOpen(user.id)}></i>
+                    <i
+                      className="bi bi-pencil-fill"
+                      onClick={() => handleEditModalOpen(user.id)}
+                    ></i>
                   </td>
                   <td>
                     <i className="bi bi-trash3-fill"></i>
@@ -184,12 +198,7 @@ const EmployeesView = () => {
                   onChange={handlePasswordChange}
                 />
                 <label className="modalLabel">Rol</label>
-                <input
-                  type="text"
-                  value={role}
-                  name="role"
-                  onChange={handleRoleChange}
-                />
+                <input type="text" value={role} onChange={handleRoleChange} />
                 <button type="submit" className="modalButton">
                   Guardar
                 </button>
