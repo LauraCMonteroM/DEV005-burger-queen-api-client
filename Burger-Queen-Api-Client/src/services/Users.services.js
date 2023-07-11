@@ -29,14 +29,28 @@ export function getData() {
   });
 }
 
-export function editDataUser() {
+export function getDataOnlyUser(userId) {
   const token = localStorage.getItem("accessToken");
+  console.log(userId);
+  return fetch(`http://localhost:8080/users/${userId}`,
+   {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+    },
+  });
+}
 
-  return fetch("http://localhost:8080/users", {
+export function editDataUser(userId, userData) {
+  const token = localStorage.getItem("accessToken");
+  console.log(userData);
+  return fetch(`http://localhost:8080/users/${userId}`, {
     method: "PATCH",
     headers: {
       Authorization: "Bearer " + token,
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(userData),
   });
 }
