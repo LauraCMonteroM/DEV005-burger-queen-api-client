@@ -37,6 +37,7 @@ const EmployeesView = () => {
   const handleEditModalOpen = () => {
     setIsModalOpen(true)
     setIsEditModalOpen(true);
+
   };
 
   function handleModalClose() {
@@ -50,6 +51,7 @@ const EmployeesView = () => {
       email: email,
       password: password,
       role: role,
+    
     };
     createUser(newUser)
       .then((res) => {
@@ -71,6 +73,7 @@ const EmployeesView = () => {
       password: password,
       role: role,
     };
+    console.log(editedUser)
     editDataUser(editedUser)
       .then((res) => {
         console.log(res);
@@ -120,7 +123,7 @@ const EmployeesView = () => {
         </button>
       </section>
       <section id="btnAdd">
-        <button type="button" className="addButton" onClick={() => handleModalOpen()}>
+        <button type="button" className="addButton" onChange={() => handleModalOpen()}>
           Añadir Empleado
         </button>
       </section>
@@ -175,6 +178,7 @@ const EmployeesView = () => {
                 <input
                   type="text"
                   value={role}
+                  name="role"
                   onChange={handleRoleChange}
                 />
                 <button type="submit" className="modalButton">
