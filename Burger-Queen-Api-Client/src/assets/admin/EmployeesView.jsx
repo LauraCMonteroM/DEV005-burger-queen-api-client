@@ -1,25 +1,25 @@
-import { useNavigate } from "react-router-dom";
+
 import {
   editDataUser,
   createUser,
   getData,
   getDataOnlyUser,
+  deleteUser,
 } from "../../services/Users.services";
 import { useState, useEffect } from "react";
 import "./EmployeesView.css";
-import image from "../../imgs/LogoBQ.png";
+
 
 const EmployeesView = () => {
   const [users, setUsers] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [editUserId, setEditUserId] = useState(null);
   const [editUser, setEditUser] = useState(null);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
-  const [deleteUser, setDeleteUser] = useState(null)
   const logOut = useNavigate();
 
   useEffect(() => {
@@ -65,29 +65,26 @@ const EmployeesView = () => {
     }
   }, [editUserId, ]);
 
-  function GotoHome() {
-    logOut("/");
-  }
-
   function handleModalOpen() {
     setIsModalOpen(true);
     setIsEditModalOpen(false);
+    setIsDeleteModalOpen(false);
   }
 
   const handleEditModalOpen = (userId) => {
     setIsModalOpen(true);
     setIsEditModalOpen(true);
+    setIsDeleteModalOpen(false);
     setEditUserId(userId);
   };
-  const handleDeleteModalOpen = (userId) =>{
-    setIsModalOpen(true)
-    setDeleteUser(userId)
-  }
+
 
   function handleModalClose() {
     setIsModalOpen(false);
     setIsEditModalOpen(false);
+    setIsDeleteModalOpen(false);
     setEditUser(null);
+    setDeleteUserId(null);
   }
 
   const handleCreateUser = (e) => {
@@ -131,6 +128,18 @@ const EmployeesView = () => {
       });
   };
 
+  const handleDeleteUser = () => {
+    deleteUser(deleteUserId)
+      .then(() => {
+        const updatedUsers = users.filter((user) => user.id !== deleteUserId);
+        setUsers(updatedUsers);
+        handleModalClose();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const handleEmailChange = (e) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
@@ -156,18 +165,6 @@ const EmployeesView = () => {
 
   return (
     <div id="adminEmployeesContainer">
-      <nav>
-        <img src={image} className="navLogo" alt="Burger Queen Logo" />
-        <i className="bi bi-box-arrow-right" id="logOut" onClick={GotoHome}></i>
-      </nav>
-      <section className="prodEmplButtons">
-        <button type="button" className="employeesButton">
-          Empleados
-        </button>
-        <button type="button" className="productsButton">
-          Productos
-        </button>
-      </section>
       <section id="btnAdd">
         <button
           type="button"
@@ -197,8 +194,9 @@ const EmployeesView = () => {
                     ></i>
                   </td>
                   <td>
-                    <i className="bi bi-trash3-fill"
-                    onClick={() => handleDeleteModalOpen(user.id)}
+                    <i
+                      className="bi bi-trash3-fill"
+                    
                     ></i>
                   </td>
                 </tr>
@@ -235,6 +233,18 @@ const EmployeesView = () => {
                   Guardar
                 </button>
               </form>
+            ) : isDeleteModalOpen ? (
+              <div className="deleteModal">
+                <p>¿Estás seguro de que deseas eliminar este usuario?</p>
+                <div className="deleteModalButtons">
+                  <button className="confirmDeleteButton" onClick={handleDeleteUser}>
+                    Confirmar
+                  </button>
+                  <button className="cancelDeleteButton" onClick={handleModalClose}>
+                    Cancelar
+                  </button>
+                </div>
+              </div>
             ) : (
               <form onSubmit={handleCreateUser}>
                 <h2>Añadir usuario</h2>
