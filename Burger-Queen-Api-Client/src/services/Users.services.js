@@ -54,3 +54,16 @@ export function editDataUser(userId, userData) {
     body: JSON.stringify(userData),
   });
 }
+
+export function deleteUser(userId) {
+  const token = localStorage.getItem("accessToken");
+  console.log(userId);
+  return fetch(`http://localhost:8080/users/${userId}`,
+   {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+    },
+  });
+}

@@ -32,20 +32,24 @@ nav {
 
 .prodEmplButtons {
   display: flex;
+  border: 1px solid #ddd;
 }
 
-.employeesButton,
-.productsButton {
+
+.selectedButton {
+  background-color: #feaf0d;
   flex: 1;
   height: 50px;
-  background-color: #f5f5f5;
   height: 70px;
-  border: none;
-  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.25);
+  border: 1px solid #e9d09d;
 }
 
-.employeesButton {
-  background-color: #feaf0d;
+.unselectedButton {
+  background-color: #f5f5f5;
+  flex: 1;
+  height: 50px;
+  height: 70px;
+  border: 1px solid #e9d09d;
 }
 
 .btnAdd {
@@ -55,7 +59,7 @@ nav {
 }
 
 .addButton {
-  background-color: #feaf0d;
+  background-color: #ffffff;
   color: black;
   font-size: 25px;
   height: 50px;
@@ -101,8 +105,18 @@ nav {
   background-color: #e6e6e6;
 }
 
+.centeredContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-/*estilos moda*/
+.edit,
+.delete {
+  font-size: 25px;
+}
+
+/*estilos modal*/
 .modal {
   position: fixed;
   z-index: 1;
@@ -117,7 +131,7 @@ nav {
 }
 
 .modal-content {
-  background-color: #ABDCE3;
+  background-color: #abdce3;
   padding: 30px;
   border-radius: 15px;
   width: 400px;
@@ -134,7 +148,7 @@ nav {
   color: black;
 }
 
-.modalButton{
+.modalButton {
   background-color: #feaf0d;
   color: black;
   font-size: 25px;
@@ -143,4 +157,36 @@ nav {
   border: none;
   border-radius: 15px;
   box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+/*Modal Eliminar*/
+.deleteModal {
+  text-align: center;
+}
+
+.deleteModal p {
+  margin-top: 20px;
+}
+
+.deleteModalButtons {
+  margin-top: 50px;
+}
+
+.confirmDeleteButton {
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancelDeleteButton {
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

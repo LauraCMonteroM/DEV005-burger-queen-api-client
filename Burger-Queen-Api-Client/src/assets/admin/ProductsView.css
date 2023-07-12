@@ -1,0 +1,190 @@
+* {
+    font-family: "Ysabeau Infant", sans-serif;
+    margin: 0px;
+    box-sizing: border-box;
+    font-size: 30px;
+  }
+  
+  #adminProductsContainer {
+    background-color: #f5f5f5;
+  }
+  
+  nav {
+    background-color: #9d0c0e;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: space-between;
+    padding: 15px 50px;
+  }
+  
+  .navLogo {
+    height: 80px;
+  }
+  
+  #logOut {
+    background-color: #9d0c0e;
+    color: white;
+    font-size: 30px;
+    float: right;
+    margin-top: 18px;
+  }
+  
+  .prodEmplButtons {
+    display: flex;
+  }
+  
+  .selectedButton {
+    background-color: #feaf0d;
+    flex: 1;
+    height: 50px;
+    height: 70px;
+    border: 1px solid #e9d09d;
+  }
+  
+  .unselectedButton {
+    background-color: #f5f5f5;
+    flex: 1;
+    height: 50px;
+    height: 70px;
+    border: 1px solid #e9d09d;
+  }
+  
+  .btnAdd {
+    display: flex;
+    justify-content: flex-end;
+    margin: 15px 30px;
+  }
+  
+  .addButton {
+    background-color: #ffffff;;
+    color: black;
+    font-size: 25px;
+    height: 50px;
+    width: 220px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.25);
+    margin: 50px 50px;
+  }
+  
+  .tableSection {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 50px;
+  }
+
+  .productsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  
+  .productsTable th,
+  .productsTable td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    margin: 0 auto;
+  }
+  
+  .productsTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .productsTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .productsTable tr:hover {
+    background-color: #e6e6e6;
+  }
+
+  
+  .centeredContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .edit, .delete{
+    font-size: 25px;
+  }
+
+  /*estilos modal*/
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #ABDCE3;
+    padding: 30px;
+    border-radius: 15px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .closeButton {
+    color: black;
+    margin-left: auto;
+  }
+  
+  .modalLabel {
+    color: black;
+  }
+  
+  .modalButton{
+    background-color: #feaf0d;
+    color: black;
+    font-size: 25px;
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.25);
+  }
+  
+  /*Modal Eliminar*/
+.deleteModal {
+  text-align: center;
+}
+
+.deleteModal p {
+  margin-top: 20px;
+}
+
+.deleteModalButtons {
+  margin-top: 50px;
+}
+
+.confirmDeleteButton {
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancelDeleteButton {
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
