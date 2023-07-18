@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   editDataUser,
   createUser,
@@ -7,7 +8,6 @@ import {
 } from "../../services/Users.services";
 import { useState, useEffect } from "react";
 import "./EmployeesView.css";
-
 
 const EmployeesView = () => {
   const [users, setUsers] = useState([]);
@@ -20,7 +20,7 @@ const EmployeesView = () => {
   const [editUserId, setEditUserId] = useState(null);
   const [editUser, setEditUser] = useState(null);
   const [deleteUserId, setDeleteUserId] = useState(null);
-
+  const [selectedRole, setSelectedRole] = useState("waiter");
 
   useEffect(() => {
     getData().then((res) => {
@@ -74,7 +74,7 @@ const EmployeesView = () => {
     const newUser = {
       email: email,
       password: password,
-      role: role,
+      role: selectedRole,
     };
     createUser(newUser)
       .then((res) => {
@@ -93,7 +93,7 @@ const EmployeesView = () => {
       id: editUserId,
       email: email,
       password: password,
-      role: role,
+      role: selectedRole,
     };
 
     editDataUser(editedUser)
@@ -133,7 +133,18 @@ const EmployeesView = () => {
 
   const handleRoleChange = (e) => {
     const newRole = e.target.value;
-    setRole(newRole);
+    setSelectedRole(newRole);
+
+    
+    const userId = editUserId;
+
+   
+    editDataUser({ id: userId, role: newRole })
+      .then(() => {
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   useEffect(() => {
@@ -168,17 +179,21 @@ const EmployeesView = () => {
                 <tr key={user.id}>
                   <td>{user.email}</td>
                   <td>{user.role}</td>
-                  <td>
-                    <i
-                      className="bi bi-pencil-fill"
-                      onClick={() => handleEditModalOpen(user.id)}
-                    ></i>
+                  <td className="iconCell">
+                    <div className="centeredContent">
+                      <i
+                        className="bi bi-pencil-fill edit"
+                        onClick={() => handleEditModalOpen(user.id)}
+                      ></i>
+                    </div>
                   </td>
-                  <td>
-                    <i
-                      className="bi bi-trash3-fill"
-                      onClick={() => handleDeleteModalOpen(user.id)}
-                    ></i>
+                  <td className="iconCell">
+                    <div className="centeredContent">
+                      <i
+                        className="bi bi-trash3-fill delete"
+                        onClick={() => handleDeleteModalOpen(user.id)}
+                      ></i>
+                    </div>
                   </td>
                 </tr>
               );
@@ -192,6 +207,7 @@ const EmployeesView = () => {
             <i
               className="bi bi-x-square-fill closeButton"
               onClick={handleModalClose}
+              data-testid="closeButton"
             ></i>
             {isEditModalOpen ? (
               <form onSubmit={handleEditUser}>
@@ -209,7 +225,21 @@ const EmployeesView = () => {
                   onChange={handlePasswordChange}
                 />
                 <label className="modalLabel">Rol</label>
-                <input type="text" value={role} onChange={handleRoleChange} />
+                <select
+                  name="select"
+                  className="modalSelector"
+                  value={selectedRole}
+                  onChange={handleRoleChange}
+                >
+                  <option value="admin">admin</option>
+                  <option
+                    value="waiter"
+                    selected={selectedRole === "waiter"}
+                  >
+                    waiter
+                  </option>
+                  <option value="chef">chef</option>
+                </select>
                 <button type="submit" className="modalButton">
                   Guardar
                 </button>
@@ -218,10 +248,16 @@ const EmployeesView = () => {
               <div className="deleteModal">
                 <p>¿Estás seguro de que deseas eliminar este usuario?</p>
                 <div className="deleteModalButtons">
-                  <button className="confirmDeleteButton" onClick={handleDeleteUser}>
+                  <button
+                    className="confirmDeleteButton"
+                    onClick={handleDeleteUser}
+                  >
                     Confirmar
                   </button>
-                  <button className="cancelDeleteButton" onClick={handleModalClose}>
+                  <button
+                    className="cancelDeleteButton"
+                    onClick={handleModalClose}
+                  >
                     Cancelar
                   </button>
                 </div>
@@ -243,13 +279,22 @@ const EmployeesView = () => {
                   value={password}
                   onChange={handlePasswordChange}
                 />
-                <label className="modalLabel">Rol</label>
-                <input
-                  type="text"
-                  placeholder="Waiter/Chef/Admin"
-                  value={role}
+                <label className="modalLabel" htmlFor="rolSelect">Rol</label>
+                <select
+                  name="select"
+                  id=""
+                  value={selectedRole}
                   onChange={handleRoleChange}
-                />
+                >
+                  <option value="admin">admin</option>
+                  <option
+                    value="waiter"
+                    selected={selectedRole === "waiter"}
+                  >
+                    waiter
+                  </option>
+                  <option value="chef">chef</option>
+                </select>
                 <button type="submit" className="modalButton">
                   Añadir
                 </button>
