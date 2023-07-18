@@ -32,9 +32,9 @@ export function createNewProduct(data) {
   });
 }
 
-export function editDataProducts(productId, productData) {
+export function editDataProducts(productData) {
   const token = localStorage.getItem("accessToken");
-  return fetch(`http://localhost:8080/products/${productId}`, {
+  return fetch(`http://localhost:8080/products/${productData.id}`, {
     method: "PATCH",
     headers: {
       Authorization: "Bearer " + token,
@@ -46,7 +46,6 @@ export function editDataProducts(productId, productData) {
 
 export function getDataOnlyProduct(productId) {
     const token = localStorage.getItem("accessToken");
-    console.log(productId);
     return fetch(`http://localhost:8080/products/${productId}`,
      {
       method: "GET",

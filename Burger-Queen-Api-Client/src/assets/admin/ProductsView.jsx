@@ -69,7 +69,7 @@ const ProductsView = () => {
       .then((res) => {
         newProduct.id = res.id;
         setProducts([...products, newProduct]);
-        setIsModalOpen(false); // Cerrar el modal después de agregar el producto
+        setIsModalOpen(false);
       })
       .catch((error) => {
         console.error(error);

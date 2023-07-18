@@ -31,7 +31,6 @@ export function getData() {
 
 export function getDataOnlyUser(userId) {
   const token = localStorage.getItem("accessToken");
-  console.log(userId);
   return fetch(`http://localhost:8080/users/${userId}`,
    {
     method: "GET",
@@ -42,10 +41,10 @@ export function getDataOnlyUser(userId) {
   });
 }
 
-export function editDataUser(userId, userData) {
+export function editDataUser(userData) {
   const token = localStorage.getItem("accessToken");
   console.log(userData);
-  return fetch(`http://localhost:8080/users/${userId}`, {
+  return fetch(`http://localhost:8080/users/${userData.id}`, {
     method: "PATCH",
     headers: {
       Authorization: "Bearer " + token,
