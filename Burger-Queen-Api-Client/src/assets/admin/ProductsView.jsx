@@ -8,7 +8,7 @@ import {
   getDataOnlyProduct,
 } from "../../services/Products.services";
 import "./ProductsView.css";
-import image from "../../imgs/LogoBQ.png";
+
 
 const ProductsView = () => {
   const [products, setProducts] = useState([]);
@@ -22,7 +22,7 @@ const ProductsView = () => {
   const [editProductId, setEditProductId] = useState(null);
   const [editProduct, setEditProduct] = useState(null);  
   const [deleteProductId, setDeleteProductId] = useState(null);
-  const logOut = useNavigate();
+
 
   useEffect(() => {
     getAllProducts().then((res) => {

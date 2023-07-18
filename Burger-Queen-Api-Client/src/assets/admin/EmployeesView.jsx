@@ -1,4 +1,3 @@
-
 import {
   editDataUser,
   createUser,
@@ -20,7 +19,8 @@ const EmployeesView = () => {
   const [role, setRole] = useState("");
   const [editUserId, setEditUserId] = useState(null);
   const [editUser, setEditUser] = useState(null);
-  const logOut = useNavigate();
+  const [deleteUserId, setDeleteUserId] = useState(null);
+
 
   useEffect(() => {
     getData().then((res) => {
@@ -34,36 +34,12 @@ const EmployeesView = () => {
         .then((res) => res.json())
         .then((data) => {
           setEditUser(data);
-  
-
         })
         .catch((error) => {
           console.error(error);
         });
     }
-  }, [editUserId, ]);
-  // UseEfect para cambiar al modal de delete 
-
-  useEffect(() => {
-    getData().then((res) => {
-      res.json().then(setUsers);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (editUserId !== null) {
-      getDataOnlyUser(editUserId)
-        .then((res) => res.json())
-        .then((data) => {
-          setEditUser(data);
-  
-
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [editUserId, ]);
+  }, [editUserId]);
 
   function handleModalOpen() {
     setIsModalOpen(true);
@@ -78,6 +54,12 @@ const EmployeesView = () => {
     setEditUserId(userId);
   };
 
+  const handleDeleteModalOpen = (userId) => {
+    setIsModalOpen(true);
+    setIsEditModalOpen(false);
+    setIsDeleteModalOpen(true);
+    setDeleteUserId(userId);
+  };
 
   function handleModalClose() {
     setIsModalOpen(false);
@@ -93,7 +75,6 @@ const EmployeesView = () => {
       email: email,
       password: password,
       role: role,
-    
     };
     createUser(newUser)
       .then((res) => {
@@ -196,7 +177,7 @@ const EmployeesView = () => {
                   <td>
                     <i
                       className="bi bi-trash3-fill"
-                    
+                      onClick={() => handleDeleteModalOpen(user.id)}
                     ></i>
                   </td>
                 </tr>
@@ -272,18 +253,11 @@ const EmployeesView = () => {
                 <button type="submit" className="modalButton">
                   Añadir
                 </button>
-              </form> 
+              </form>
             )}
-            <section>
-              <span>¿Esta seguro de eliminar este usuario ?</span>
-              <button>Aceptar</button>
-              <button>Rechazar</button>
-            </section>
-
           </div>
         </div>
       )}
-
     </div>
   );
 };
